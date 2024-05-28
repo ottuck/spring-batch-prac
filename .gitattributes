@@ -1,0 +1,6 @@
+# 자동 줄바꿈 설정
+* text=auto
+
+# 특정 파일 형식 설정 (예: Windows에서는 CRLF, Unix/Linux/macOS에서는 LF)
+*.sh text eol=lf
+*.bat text eol=crlf

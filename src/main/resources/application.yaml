@@ -1,9 +1,9 @@
 spring:
   batch:
-  job:
-    names: ${job.name:NONE}
-  jdbc:
-    initialize-schema: ALWAYS
+    jdbc:
+      initialize-schema: ALWAYS
+    job:
+      names: ${job.name:NONE}
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/spring_batch
     driver-class-name: com.mysql.cj.jdbc.Driver

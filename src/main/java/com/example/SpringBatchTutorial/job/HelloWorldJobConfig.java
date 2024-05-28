@@ -12,7 +12,6 @@ import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -20,16 +19,12 @@ import org.springframework.context.annotation.Configuration;
 @RequiredArgsConstructor
 public class HelloWorldJobConfig {
 
-    @Autowired
     private final JobBuilderFactory jobBuilderFactory;
-
-    @Autowired
     private final StepBuilderFactory stepBuilderFactory;
 
-
     @Bean
-    public Job helloWorldJob(){
-        return jobBuilder.get("helloWorldJob")
+    public Job helloWorldJob() {
+        return jobBuilderFactory.get("helloWorldJob")
                 .incrementer(new RunIdIncrementer())
                 .start(helloWorldStep())
                 .build();
@@ -37,7 +32,7 @@ public class HelloWorldJobConfig {
 
     @JobScope
     @Bean
-    public Step helloWorldStep(){
+    public Step helloWorldStep() {
         return stepBuilderFactory.get("helloWorldStep")
                 .tasklet(helloWorldTasklet())
                 .build();
@@ -45,7 +40,7 @@ public class HelloWorldJobConfig {
 
     @StepScope
     @Bean
-    public Tasklet helloWorldTasklet(){
+    public Tasklet helloWorldTasklet() {
         return new Tasklet() {
             @Override
             public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
