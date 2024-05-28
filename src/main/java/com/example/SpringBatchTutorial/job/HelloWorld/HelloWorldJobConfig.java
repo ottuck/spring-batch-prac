@@ -1,4 +1,4 @@
-package com.example.SpringBatchTutorial.job;
+package com.example.SpringBatchTutorial.job.HelloWorld;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
@@ -15,6 +15,11 @@ import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/*
+* desc : Hello world 출력
+* run arguments : --spring.batch.job.names=helloWorldJob
+* */
+
 @Configuration
 @RequiredArgsConstructor
 public class HelloWorldJobConfig {
@@ -26,6 +31,7 @@ public class HelloWorldJobConfig {
     public Job helloWorldJob() {
         return jobBuilderFactory.get("helloWorldJob")
                 .incrementer(new RunIdIncrementer())
+                .listener(new JobLoggerListener())
                 .start(helloWorldStep())
                 .build();
     }
@@ -43,7 +49,7 @@ public class HelloWorldJobConfig {
     public Tasklet helloWorldTasklet() {
         return new Tasklet() {
             @Override
-            public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
+            public RepeatStatus execute(StepContribution contributlion, ChunkContext chunkContext) throws Exception {
                 System.out.println("Hello World Spring Batch");
                 return RepeatStatus.FINISHED;
             }

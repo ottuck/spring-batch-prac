@@ -8,6 +8,7 @@ class SpringBatchTutorialApplicationTests {
 
 	@Test
 	void contextLoads() {
+		System.out.println("Test contextLoads() method");
 	}
 
 }
