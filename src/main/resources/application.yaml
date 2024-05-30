@@ -5,9 +5,16 @@ spring:
     job:
       names: ${job.name:NONE}
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/spring_batch
+#    url: jdbc:mysql://127.0.0.1:3306/spring_batch
+    url: jdbc:mysql://127.0.0.1:3306/spring_batch?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 1234
   jpa:
     show-sql: true
+#    아래는 수정 필요
+    hibernate:
+      ddl-auto: update
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.MySQL8Dialect

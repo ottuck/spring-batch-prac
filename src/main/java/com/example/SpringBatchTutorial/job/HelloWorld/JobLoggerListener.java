@@ -7,7 +7,6 @@ import org.springframework.batch.core.JobExecutionListener;
 
 @Slf4j
 public class JobLoggerListener implements JobExecutionListener {
-
     private static final String BEGIN_MESSAGE = "{} Job is Running!";
     private static final String END_MESSAGE = "{} Job is Done! Status: {}";
 
