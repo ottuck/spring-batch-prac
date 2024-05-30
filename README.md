@@ -19,27 +19,38 @@ Add database and Spring Batch configurations in `application.yml` or `applicatio
 Create the `spring_batch` database and necessary tables with the following SQL script:
 
 ```sql
-CREATE DATABASE spring_batch;
-USE spring_batch;
+-- 주문 테이블 생성
+CREATE TABLE `spring_batch`.`orders` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `order_item` VARCHAR(45) NULL,
+  `price` INT NULL,
+  `order_date` DATE NULL,
+  PRIMARY KEY (`id`))
+  ;
 
-CREATE TABLE departments (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
-);
+-- 정산 테이블 생성
+CREATE TABLE `spring_batch`.`accounts` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `order_item` VARCHAR(45) NULL,
+  `price` INT NULL,
+  `order_date` DATE NULL,
+  `account_date` DATE NULL,
+  PRIMARY KEY (`id`))
+;
 
-CREATE TABLE employees (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    department_id INT,
-    salary DECIMAL(10, 2),
-    hire_date DATE,
-    FOREIGN KEY (department_id) REFERENCES departments(id)
-);
+INSERT INTO spring_batch.orders(`order_item`, `price`, `order_date`) values ('카카오 선물', 15000, '2022-03-01');
+INSERT INTO spring_batch.orders(`order_item`, `price`, `order_date`) values ('배달주문', 18000, '2022-03-01');
+INSERT INTO spring_batch.orders(`order_item`, `price`, `order_date`) values ('교보문고', 14000, '2022-03-02');
+INSERT INTO spring_batch.orders(`order_item`, `price`, `order_date`) values ('아이스크림', 3800, '2022-03-03');
+INSERT INTO spring_batch.orders(`order_item`, `price`, `order_date`) values ('치킨', 21000, '2022-03-04');
+INSERT INTO spring_batch.orders(`order_item`, `price`, `order_date`) values ('커피', 4000, '2022-03-04');
+INSERT INTO spring_batch.orders(`order_item`, `price`, `order_date`) values ('교보문고', 13800, '2022-03-05');
+INSERT INTO spring_batch.orders(`order_item`, `price`, `order_date`) values ('카카오 선물', 5500, '2022-03-06');
 
-INSERT INTO departments (name) VALUES ('HR');
-INSERT INTO departments (name) VALUES ('Engineering');
-INSERT INTO departments (name) VALUES ('Sales');
+select *
+from spring_batch.orders
+;
 
-INSERT INTO employees (name, department_id, salary, hire_date) VALUES ('John Doe', 1, 50000, '2022-01-15');
-INSERT INTO employees (name, department_id, salary, hire_date) VALUES ('Jane Smith', 2, 75000, '2021-07-23');
-INSERT INTO employees (name, department_id, salary, hire_date) VALUES ('Emily Johnson', 3, 60000, '2020-03-10');
+select *
+from spring_batch.accounts
+;
