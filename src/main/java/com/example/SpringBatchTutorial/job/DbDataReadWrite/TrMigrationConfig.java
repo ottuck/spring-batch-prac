@@ -28,7 +28,7 @@ import java.util.Collections;
 import java.util.List;
 
 /*
- * desc : 주문테이블 정보 -> 정산 테이블로 이관
+ * desc : 주문테이블 정보 -> 정산 테이블로 이관 배치 작업
  * run arguments : --spring.batch.job.names=trMigrationJob
  * */
 
@@ -66,13 +66,8 @@ public class TrMigrationConfig {
         return stepBuilderFactory.get("trMigrationStep")
                 .<Orders, Accounts>chunk(5)
                 .reader(trOrdersReader)
-//                .writer(new ItemWriter() {
-//                    @Override
-//                    public void write(List items) throws Exception {
-//                        items.forEach(System.out::println);
-//                    }
-//                })
                 .processor(trOrderProcessor)
+//                .writer(items -> items.forEach(System.out::println))
                 .writer(trOrdersWriter)
                 .build();
     }

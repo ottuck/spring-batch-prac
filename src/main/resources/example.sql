@@ -26,10 +26,4 @@ INSERT INTO spring_batch.orders(`order_item`, `price`, `order_date`) values ('�
 INSERT INTO spring_batch.orders(`order_item`, `price`, `order_date`) values ('교보문고', 13800, '2022-03-05');
 INSERT INTO spring_batch.orders(`order_item`, `price`, `order_date`) values ('카카오 선물', 5500, '2022-03-06');
 
-select *
-from spring_batch.orders
-;
-
-select *
-from spring_batch.accounts
-;
+--주문 테이블의 데이터를 정산 테이블로 이동시키기 때문에 정산 테이블은 비워둡니다.

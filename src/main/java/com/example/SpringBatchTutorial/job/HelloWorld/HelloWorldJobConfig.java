@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /*
-* desc : Hello world 출력
+* desc : helloWorldJob with Logger Listener
 * run arguments : --spring.batch.job.names=helloWorldJob
 * */
 
